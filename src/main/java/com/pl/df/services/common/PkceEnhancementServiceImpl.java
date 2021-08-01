@@ -40,7 +40,7 @@ public class PkceEnhancementServiceImpl implements PkceEnhancementService {
 	}
 
 	@Override
-	public String generateCodeChallange(String codeVerifier) {
+	public String createCodeChallange(String codeVerifier) {
 		try {
 			byte[] bytes = codeVerifier.getBytes("Us-ASCII");
 			MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");

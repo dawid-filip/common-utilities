@@ -21,4 +21,16 @@ public class PkceRestController {
 		return pkceEnhancementService.createCodeVerifierAndCodeChallange();
 	}
 	
+	// http://localhost:8001/pkce/code-verifier
+	@GetMapping("code-verifier")
+	public String getPkceCodeVerifier() {
+		return pkceEnhancementService.createCodeVerifier();
+	}
+	
+	// http://localhost:8001/pkce/code-challenge
+	@GetMapping("code-challenge")
+	public String getPkceCodeChallange() {
+		return pkceEnhancementService.createCodeChallange(pkceEnhancementService.createCodeVerifier());
+	}
+	
 }

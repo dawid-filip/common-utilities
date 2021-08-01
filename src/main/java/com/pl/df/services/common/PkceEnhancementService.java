@@ -6,6 +6,6 @@ public interface PkceEnhancementService {
 	
 	public PkceDto createCodeVerifierAndCodeChallange();
 	public String createCodeVerifier();
-	public String generateCodeChallange(String codeVerifier);
+	public String createCodeChallange(String codeVerifier);
 	
 }
