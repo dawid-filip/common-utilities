@@ -19,7 +19,7 @@ public class PkceEnhancementServiceImpl implements PkceEnhancementService {
 	@Override
 	public PkceDto createCodeVerifierAndCodeChallange() {
 		String createCodeVerifier = createCodeVerifier();
-		String generateCodeChallange = generateCodeChallange(createCodeVerifier);
+		String generateCodeChallange = createCodeChallange(createCodeVerifier);
 		
 		PkceDto pkceDto = new PkceDto(createCodeVerifier, generateCodeChallange);
 		log.info(pkceDto.toString());
