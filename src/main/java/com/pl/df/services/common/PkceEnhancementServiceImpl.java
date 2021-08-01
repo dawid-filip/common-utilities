@@ -1,4 +1,4 @@
-package com.pl.df.common;
+package com.pl.df.services.common;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -8,19 +8,26 @@ import java.util.Base64;
 
 import org.springframework.stereotype.Service;
 
+import com.pl.df.dto.PkceDto;
+
 import lombok.extern.log4j.Log4j2;
 
 @Service
 @Log4j2
-public class PkceEnhancement {
+public class PkceEnhancementServiceImpl implements PkceEnhancementService {
 
-	public PkceEnhancement createCodeVerifierAndCodeChallange() {
+	@Override
+	public PkceDto createCodeVerifierAndCodeChallange() {
 		String createCodeVerifier = createCodeVerifier();
 		String generateCodeChallange = generateCodeChallange(createCodeVerifier);
 		
-		return new PkceEnhancement(createCodeVerifier, generateCodeChallange);
+		PkceDto pkceDto = new PkceDto(createCodeVerifier, generateCodeChallange);
+		log.info(pkceDto.toString());
+		
+		return pkceDto;
 	}
 	
+	@Override
 	public String createCodeVerifier() {
 		byte[] codeVerifier = new byte[32];
 
@@ -32,6 +39,7 @@ public class PkceEnhancement {
 		return encodeToString;
 	}
 
+	@Override
 	public String generateCodeChallange(String codeVerifier) {
 		try {
 			byte[] bytes = codeVerifier.getBytes("Us-ASCII");
